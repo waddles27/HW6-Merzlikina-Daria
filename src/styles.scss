@@ -184,14 +184,12 @@ section {
         }
     }
 
-
-
     &__navigation {
         height: 100px;
         grid-column: 2/-2;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        
+
 
         &__logo {
             align-self: center;
@@ -207,15 +205,14 @@ section {
             @include window-classes.on-large {
                 grid-column: 5/span 3;
                 grid-template-columns: repeat(3, min-content);
-                padding-top:0;
+                padding-top: 0;
             }
 
             @include window-classes.on-classes(("expanded", "large", "extra-large")) {
                 grid-column: 7/span 6;
-                justify-content: space-around;
+                justify-content: space-evenly;
                 grid-template-columns: repeat(3, min-content);
-                
-                padding-top:0;
+                padding-top: 0;
             }
         }
     }
@@ -235,13 +232,13 @@ section {
 .section__raport {
     &__img {
         height: 256px;
-        background-color: lightblue;
-        grid-column: span 5;
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/64af9ae666d8a601f727fc4ad3e565f793de4b8d');
+        grid-column: span 4;
         border-radius: 16px;
     }
 
     &__content {
-        grid-column: 7 / span 6;
+        grid-column: span 4;
         display: grid;
         grid-auto-rows: min-content;
         gap: 16px;
@@ -251,11 +248,11 @@ section {
         }
     }
 
-    @media(width < #{$breakpoint-tablet}) {
-
-        &__image,
+    @include window-classes.on-classes(("medium","expanded", "large", "extra-large")) {
+        &__img,
         &__content {
-            grid-column: span 4;
+            grid-column: span 6;
+            background-size: cover;
         }
-    }
+    } 
 }
