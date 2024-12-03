@@ -12,6 +12,13 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.svg$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: path.join('icons', '[name].[contenthash][ext]'),
+                },
+            },
+            {
                 test: /\.js$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,

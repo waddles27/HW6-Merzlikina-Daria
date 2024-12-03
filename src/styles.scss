@@ -1,3 +1,261 @@
-.hero-section{
-  background-color: gray;
+@use "sass:map";
+
+@use "scss/core/reset";
+@use "scss/mixins/window-classes";
+
+@include reset.init();
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+$typography-map: (
+    "display-large": ("line-height": 64px,
+        "size": 57px,
+        "tracking": -0.25px,
+        "weight": 400),
+    "display-medium": ("line-height": 52px,
+        "size": 45px,
+        "tracking": 0,
+        "weight": 400),
+    "headline-large": ("line-height": 40px,
+        "size": 32px,
+        "tracking": 0,
+        "weight": 400),
+    "headline-medium": ("line-height": 36px,
+        "size": 28px,
+        "tracking": 0,
+        "weight": 400),
+    "title-medium": ("line-height": 24px,
+        "size": 16px,
+        "tracking": 0.15px,
+        "weight": 500),
+    "body-large": ("line-height": 24px,
+        "size": 16px,
+        "tracking": 0.5px,
+        "weight": 400),
+    "body-medium": ("line-height": 20px,
+        "size": 14px,
+        "tracking": 0.25px,
+        "weight": 400),
+);
+
+@mixin _private-apply-font($font-style) {
+    $font-map: map.get($typography-map, $font-style);
+
+    font-size: map.get($font-map, "size");
+    font-weight: map.get($font-map, "weight");
+    letter-spacing: map.get($font-map, "tracking");
+    line-height: map.get($font-map, "line-height");
+}
+
+@mixin typography-display-large {
+    @include _private-apply-font("display-large");
+}
+
+@mixin typography-display-medium {
+    @include _private-apply-font("display-medium");
+}
+
+@mixin typography-headline-large {
+    @include _private-apply-font("headline-large");
+}
+
+@mixin typography-headline-medium {
+    @include _private-apply-font("headline-medium");
+}
+
+@mixin typography-title-medium {
+    @include _private-apply-font("title-medium");
+}
+
+@mixin typography-body-large {
+    @include _private-apply-font("body-large");
+}
+
+@mixin typography-body-medium {
+    @include _private-apply-font("body-medium");
+}
+
+:root {
+    // light theme colors
+    --md-sys-color-background-light: rgb(248 249 255);
+    --md-sys-color-on-background-light: rgb(25 28 32);
+    --md-sys-color-surface-container-light: rgb(236 238 244);
+    --md-sys-color-primary-container-light: rgb(209 228 255);
+    --md-sys-color-on-primary-container-light: rgb(0 29 54);
+    --md-sys-color-on-surface-light: rgb(25 28 32);
+    --md-sys-color-on-surface-variant-light: rgb(67 71 78);
+
+    // dark theme colors
+    --md-sys-color-background-dark: rgb(17 20 24);
+    --md-sys-color-on-background-dark: rgb(225 226 232);
+    --md-sys-color-surface-container-dark: rgb(29 32 36);
+    --md-sys-color-primary-container-dark: rgb(26 73 117);
+    --md-sys-color-on-primary-container-dark: rgb(209 228 255);
+    --md-sys-color-on-surface-dark: rgb(225 226 232);
+    --md-sys-color-on-surface-variant-dark: rgb(195 198 207);
+
+    // theme colors
+    --md-sys-color-background: light-dark(var(--md-sys-color-background-light), var(--md-sys-color-background-dark));
+    --md-sys-color-on-background: light-dark(var(--md-sys-color-on-background-light), var(--md-sys-color-on-background-dark));
+    --md-sys-color-surface-container: light-dark(var(--md-sys-color-surface-container-light), var(--md-sys-color-surface-container-dark));
+    --md-sys-color-primary-container: light-dark(var(--md-sys-color-primary-container-light), var(--md-sys-color-primary-container-dark));
+    --md-sys-color-on-primary-container: light-dark(var(--md-sys-color-on-primary-container-light), var(--md-sys-color-on-primary-container-dark));
+    --md-sys-color-on-surface: light-dark(var(--md-sys-color-on-surface-light), var(--md-sys-color-on-surface-dark));
+    --md-sys-color-on-surface-variant: light-dark(var(--md-sys-color-on-surface-variant-light), var(--md-sys-color-on-surface-variant-dark));
+}
+
+$breakpoint-phone: 600px;
+$breakpoint-tablet: 840px;
+
+body {
+    --_columns: 4;
+    --_offset: 16px;
+
+    @include typography-body-large;
+
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: var(--_offset) [content-start] repeat(var(--_columns), 1fr) [content-end] var(--_offset);
+    column-gap: 16px;
+
+    font-family: "Roboto", sans-serif;
+
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+
+    position: relative;
+
+    @include window-classes.on-medium {
+        --_columns: 8;
+        --_offset: 32px;
+
+        column-gap: 24px;
+    }
+
+    @include window-classes.on-classes(("expanded", "large", "extra-large")) {
+        --_columns: 12;
+        --_offset: 64px;
+    }
+}
+
+section {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: subgrid;
+    isolation: isolate;
+    padding-block: 30px;
+
+    &>.content {
+        grid-column: content;
+        display: grid;
+        grid-template-columns: subgrid;
+    }
+}
+
+.hero-section {
+    height: 100dvh;
+    background-image: url('https://s3-alpha-sig.figma.com/img/5789/05ac/f6a90cb182a2ace4cb6fbef124c0b2ff?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AEOHSvVWyBotz9TDGaYSgq~nYmi6O7CIKXA34FGOQkI4QP5j1--I-hxpWyuSuyJN~ycWX6B2D6luaBzEQARSdd39KkP3gY29xV-6lVWL9hoPjZISD3XcMUrqSJwkSSewSwUrnPoD6xIBtoheKz7HR6GBg9ugiYPADtU~1SAEjCCsMIwQXlkjkOZljv-Qgj62NRSZqQuxDybqsHizxe9sPo~rjMYOgP79PE2dLOtdyDgZZsUWXPk1EkhzeQPBA7t-qNwoH6ejGtWkahN~hTFmVrlA6pZVteH7atY7j4SJtUBbUPPU8ASlv2jLVZw0x03L993Iys2SmhWVyDbniursGg__');
+    background-size: cover;
+    background-position: right;
+    padding-top: 0;
+    color: white;
+
+
+    &__content {
+        grid-column: 2/span 6;
+        display: grid;
+        align-items: center;
+        padding-block: 100px;
+
+        &__heading {
+            display: grid;
+            align-content: space-between;
+            gap: 16px;
+            filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, .35));
+
+            h1 {
+                @include typography-display-large;
+            }
+
+            h2 {
+                @include typography-headline-large;
+            }
+        }
+    }
+
+
+
+    &__navigation {
+        height: 100px;
+        grid-column: 2/-2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+
+        &__logo {
+            align-self: center;
+        }
+
+        &__info {
+            display: grid;
+            grid-column: 3/span 2;
+            align-self: center;
+            gap: 10px;
+            padding-top: 15px;
+
+            @include window-classes.on-large {
+                grid-column: 5/span 3;
+                grid-template-columns: repeat(3, min-content);
+                padding-top:0;
+            }
+
+            @include window-classes.on-classes(("expanded", "large", "extra-large")) {
+                grid-column: 7/span 6;
+                justify-content: space-around;
+                grid-template-columns: repeat(3, min-content);
+                
+                padding-top:0;
+            }
+        }
+    }
+}
+
+
+.cta {
+    @include typography-display-medium;
+    padding: 24px;
+    border-radius: 16px;
+    background: #006399;
+    display: grid;
+    place-items: center;
+}
+
+
+.section__raport {
+    &__img {
+        height: 256px;
+        background-color: lightblue;
+        grid-column: span 5;
+        border-radius: 16px;
+    }
+
+    &__content {
+        grid-column: 7 / span 6;
+        display: grid;
+        grid-auto-rows: min-content;
+        gap: 16px;
+
+        h3 {
+            @include typography-headline-medium;
+        }
+    }
+
+    @media(width < #{$breakpoint-tablet}) {
+
+        &__image,
+        &__content {
+            grid-column: span 4;
+        }
+    }
 }
