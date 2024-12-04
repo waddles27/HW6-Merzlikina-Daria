@@ -37,6 +37,18 @@ $typography-map: (
         "size": 14px,
         "tracking": 0.25px,
         "weight": 400),
+    "agitation-small":("line-height": 44px,
+        "size": 36px,
+        "tracking": 0.25px,
+        "weight": 400),
+    "agitation-medium":("line-height": 52px,
+        "size": 45px,
+        "tracking": 0.25px,
+        "weight": 400),
+    "agitation-large":("line-height": 64px,
+        "size": 57px,
+        "tracking": 0.25px,
+        "weight": 400),
 );
 
 @mixin _private-apply-font($font-style) {
@@ -46,6 +58,18 @@ $typography-map: (
     font-weight: map.get($font-map, "weight");
     letter-spacing: map.get($font-map, "tracking");
     line-height: map.get($font-map, "line-height");
+}
+
+@mixin typography-agitation-small {
+    @include _private-apply-font("agitation-small");
+}
+
+@mixin typography-agitation-medium {
+    @include _private-apply-font("agitation-medium");
+}
+
+@mixin typography-agitation-large {
+    @include _private-apply-font("agitation-large");
 }
 
 @mixin typography-display-large {
@@ -81,8 +105,8 @@ $typography-map: (
     --md-sys-color-background-light: rgba(252, 252, 255, 1);
     --md-sys-color-on-background-light: rgba(26, 28, 30, 1);
     --md-sys-color-surface-container-light: rgba(249, 249, 252, 1);
-    --md-sys-color-primary-container-light:rgb(209 228 255);
-    --md-sys-color-on-primary-container-light: rgba(0, 99, 153, 1);
+    --md-sys-color-primary-container-light: rgb(209 228 255);
+    --md-sys-color-on-primary-container-light: rgb(0 29 54);
     --md-sys-color-on-surface-light: rgba(26, 28, 30, 1);
     --md-sys-color-on-surface-variant-light: rgba(66, 71, 78, 1);
     --md-sys-color-inverse-surface-light: rgb(46 49 53);
@@ -90,13 +114,14 @@ $typography-map: (
     --md-sys-color-surface-variant-light: rgb(223 226 235);
     --md-sys-color-secondary-container-light: rgb(215 227 248);
     --md-sys-color-primary-light: rgb(54 97 142);
+    --md-sys-color-on-primary-light: rgb(255 255 255);
 
     // dark theme colors
     --md-sys-color-background-dark: rgba(26, 28, 30, 1);
     --md-sys-color-on-background-dark: rgba(226, 226, 229, 1);
     --md-sys-color-surface-container-dark: rgba(17, 20, 22, 1);
     --md-sys-color-primary-container-dark: rgb(26 73 117);
-    --md-sys-color-on-primary-container-dark: rgb(0 50 89);
+    --md-sys-color-on-primary-container-dark:rgb(209 228 255);
     --md-sys-color-on-surface-dark: rgba(198, 198, 201, 1);
     --md-sys-color-on-surface-variant-dark: rgba(194, 199, 207, 1);
     --md-sys-color-inverse-surface-dark: rgb(225 226 232);
@@ -104,6 +129,7 @@ $typography-map: (
     --md-sys-color-surface-variant-dark: rgb(67 71 78);
     --md-sys-color-secondary-container-dark: rgb(59 72 88);
     --md-sys-color-primary-dark: rgb(161 202 253);
+    --md-sys-color-on-primary-dark: rgb(0 50 89);
 
     // theme colors
     --md-sys-color-background: light-dark(var(--md-sys-color-background-light), var(--md-sys-color-background-dark));
@@ -113,11 +139,13 @@ $typography-map: (
     --md-sys-color-on-primary-container: light-dark(var(--md-sys-color-on-primary-container-light), var(--md-sys-color-on-primary-container-dark));
     --md-sys-color-on-surface: light-dark(var(--md-sys-color-on-surface-light), var(--md-sys-color-on-surface-dark));
     --md-sys-color-on-surface-variant: light-dark(var(--md-sys-color-on-surface-variant-light), var(--md-sys-color-on-surface-variant-dark));
-    --md-sys-color-inverse-surface:light-dark(var( --md-sys-color-inverse-surface-light), var( --md-sys-color-inverse-surface-dark));
-    --md-sys-color-inverse-on-surface:light-dark(var( --md-sys-color-inverse-on-surface-light), var( --md-sys-color-inverse-on-surface-dark));
-    --md-sys-color-surface-variant: light-dark(var( --md-sys-color-surface-variant-light), var( --md-sys-color-surface-variant-dark));
-    --md-sys-color-secondary-container: light-dark(var( --md-sys-color-secondary-container-light), var( --md-sys-color-secondary-container-dark));
-    --md-sys-color-primary: light-dark(var( --md-sys-color-primary-light), var( --md-sys-color-primary-dark));
+    --md-sys-color-inverse-surface: light-dark(var(--md-sys-color-inverse-surface-light), var(--md-sys-color-inverse-surface-dark));
+    --md-sys-color-inverse-on-surface: light-dark(var(--md-sys-color-inverse-on-surface-light), var(--md-sys-color-inverse-on-surface-dark));
+    --md-sys-color-surface-variant: light-dark(var(--md-sys-color-surface-variant-light), var(--md-sys-color-surface-variant-dark));
+    --md-sys-color-secondary-container: light-dark(var(--md-sys-color-secondary-container-light), var(--md-sys-color-secondary-container-dark));
+    --md-sys-color-primary: light-dark(var(--md-sys-color-primary-light), var(--md-sys-color-primary-dark));
+    --md-sys-color-on-primary: light-dark(var(--md-sys-color-on-primary-light), var(--md-sys-color-on-primary-dark));
+
 
 
 }
@@ -176,7 +204,7 @@ section {
     background-size: cover;
     background-position: right;
     padding-top: 0;
-    color: var(--md-sys-color-background-light);
+    color: var(--md-sys-color-on-primary-light);
 
 
     &__content {
@@ -281,6 +309,7 @@ section {
 .section__new,
 .section__recreated {
     &__img {
+        background-position: center;
         height: 256px;
         max-width: 456px;
         grid-column: span 5;
@@ -298,7 +327,7 @@ section {
         }
 
         h3 {
-            color: var( --md-sys-color-primary);
+            color: var(--md-sys-color-primary);
             @include typography-headline-medium;
         }
     }
@@ -314,7 +343,7 @@ section {
 }
 
 .slogan {
-    background-color:var( --md-sys-color-inverse-surface);
+    background-color: var(--md-sys-color-inverse-surface);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -330,15 +359,19 @@ section {
         @include typography-display-medium;
         padding: 24px;
         border-radius: 16px;
-        background: #006399;
+        background: var(--md-sys-color-on-primary-container);
         display: grid;
         place-items: center;
+
+        p {
+            color: var(--md-sys-color-on-primary-light);
+        }
     }
 }
 
 .text-section {
 
-    background-color: var( --md-sys-color-surface-variant);
+    background-color: var(--md-sys-color-surface-variant);
     text-align: center;
 
     p {
@@ -367,7 +400,8 @@ section {
     grid-auto-rows: auto;
 
     &__img {
-        background-image:url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/5265b80c4b87bae3c9f44ff369b80d9ef2ae1e5a');
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/8b60af22f02d84ebb8b268ddabe0443886678db9');
+        background-position: center;
         height: 256px;
         max-width: 456px;
         grid-column: span 4;
@@ -386,7 +420,7 @@ section {
             padding-top: 16px;
 
             h3 {
-                color: var(--md-sys-color-primary-container);
+                color: var(--md-sys-color-primary);
                 @include typography-headline-medium;
             }
         }
@@ -404,18 +438,22 @@ section {
     text-align: center;
     align-items: center;
     gap: 16px;
+    color: var(--md-sys-color-on-primary-container);
 
     &__small {
+        @include typography-agitation-small;
         grid-column: 1/-1;
         grid-row: 1;
     }
 
     &__medium {
+        @include typography-agitation-medium;
         grid-column: 1/-1;
         grid-row: 2;
     }
 
     &__large {
+        @include typography-agitation-large;
         grid-column: 1/-1;
         grid-row: 3;
     }
