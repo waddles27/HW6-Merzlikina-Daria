@@ -228,12 +228,44 @@ section {
     place-items: center;
 }
 
-
 .section__raport {
     &__img {
-        height: 256px;
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/64af9ae666d8a601f727fc4ad3e565f793de4b8d');
-        grid-column: span 4;
+    }
+}
+
+.section__incident {
+    &__img {
+        background-color: blue;
+    }
+}
+
+.section__new {
+    &__img {
+        background-color: blue;
+    }
+}
+
+.section__recreated {
+    &__img {
+        background-color: blue;
+    }
+}
+
+.section__help{
+    &__img {
+        background-color: blue;
+    }
+}
+
+.section__raport,
+.section__incident,
+.section__new,
+.section__recreated{
+    &__img {
+        height: 256px;
+        max-width: 456px;
+        grid-column: span 5;
         border-radius: 16px;
     }
 
@@ -248,11 +280,101 @@ section {
         }
     }
 
-    @include window-classes.on-classes(("medium","expanded", "large", "extra-large")) {
+    @include window-classes.on-classes(("medium", "expanded", "large", "extra-large")) {
+
         &__img,
         &__content {
             grid-column: span 6;
             background-size: cover;
         }
-    } 
+    }
+}
+
+.slogan {
+    background-color: aqua;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    p {
+        grid-column: 1/-1;
+        @include typography-display-medium;
+        color: var(--md-sys-color-on-background-reverse)
+    }
+}
+
+.text-section {
+
+    background-color: aqua;
+    text-align: center;
+
+    p {
+        display: grid;
+        grid-column: 2/ span 4;
+
+
+        @include window-classes.on-medium {
+            grid-column: 3/ span 6;
+        }
+
+        @include window-classes.on-classes(("expanded", "large", "extra-large")) {
+            grid-column: 8/ 12;
+            justify-content: end;
+        }
+    }
+}
+
+.section__list {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: repeat(6, 1fr);
+    align-items: center;
+    gap: 16px;
+    grid-auto-rows: auto;
+
+    &__img {
+        background-color: blue;
+        height: 256px;
+        max-width: 456px;
+        grid-column: span 4;
+        grid-row: 1;
+        border-radius: 16px;
+    }
+
+    &__text {
+        grid-column: span 4;
+        grid-row: 2/6;
+
+        &__right, &__left {
+            display: grid;
+            gap: 16px;
+            padding-top: 16px;
+
+            h3 {
+                @include typography-headline-medium;
+            }
+        }
+    }
+
+}
+
+.section__help{
+    &__img {
+        height: 256px;
+        max-width: 456px;
+        grid-column: span 5;
+        border-radius: 16px;
+    }
+
+    &__content {
+        grid-column: span 4;
+        display: grid;
+        grid-auto-rows: min-content;
+        gap: 16px;
+
+        h3 {
+            @include typography-headline-medium;
+        }
+    }
 }
