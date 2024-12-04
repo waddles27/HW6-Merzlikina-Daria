@@ -157,7 +157,7 @@ $typography-map: (
     --md-sys-color-on-background-dark: rgba(226, 226, 229, 1);
     --md-sys-color-surface-container-dark: rgba(17, 20, 22, 1);
     --md-sys-color-primary-container-dark: rgb(26 73 117);
-    --md-sys-color-on-primary-container-dark:rgb(209 228 255);
+    --md-sys-color-on-primary-container-dark: rgb(209 228 255);
     --md-sys-color-on-surface-dark: rgba(198, 198, 201, 1);
     --md-sys-color-on-surface-variant-dark: rgba(194, 199, 207, 1);
     --md-sys-color-inverse-surface-dark: rgb(225 226 232);
@@ -311,6 +311,7 @@ section {
 
 .section__raport {
     @include section-styles;
+
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/64af9ae666d8a601f727fc4ad3e565f793de4b8d');
     }
@@ -318,6 +319,7 @@ section {
 
 .section__incident {
     @include section-styles;
+
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/bb1ea02106377785276820ebdeacea4c781ec8ad');
     }
@@ -325,6 +327,7 @@ section {
 
 .section__new {
     @include section-styles;
+
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/1aade643a3b12fcd939d4bd6c35e9116e519e18e');
     }
@@ -332,6 +335,7 @@ section {
 
 .section__recreated {
     @include section-styles;
+
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/d1cb329202792b3173f3cb9c1b096c4877d243dd');
     }
@@ -339,11 +343,11 @@ section {
 
 .section__help {
     @include section-styles;
+
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/5265b80c4b87bae3c9f44ff369b80d9ef2ae1e5a');
     }
 }
-
 
 .slogan {
     background-color: var(--md-sys-color-inverse-surface);
@@ -396,20 +400,14 @@ section {
 
 .section__list {
     background-color: var(--md-sys-color-secondary-container);
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: center;
-    gap: 16px;
-    grid-auto-rows: auto;
+    padding-block: 100px;
 
-    @include window-classes.on-classes(("expanded", "large", "extra-large")) {
-        grid-template-columns: repeat(2, 6fr); 
-        grid-template-rows: repeat(3, auto); 
-
-       &__text{
-        display:flex ;
-       }
-      }
+    .content{
+        row-gap: 50px;
+        @include window-classes.on-classes(("expanded", "large", "extra-large")){
+            grid-template-rows: repeat(3, 1fr);
+        }
+    }
 
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/8b60af22f02d84ebb8b268ddabe0443886678db9');
@@ -417,35 +415,28 @@ section {
         height: 256px;
         max-width: 456px;
         grid-column: span 4;
-        grid-row: 1;
         border-radius: 16px;
+
+        @include window-classes.on-classes(("expanded", "large", "extra-large")) {
+            grid-column: 1/span 5;
+        }
+
+        @include window-classes.on-large{
+
+        }
+
     }
 
     &__text {
         grid-column: span 4;
-        grid-row: 2/6;
+        gap: 16px;
+       
 
-        &__right{
-            grid-area: text-right;
-            gap: 16px;
-            padding-top: 16px;
-
-            h3 {
-                color: var(--md-sys-color-primary);
-                @include typography-headline-medium;
-            }
+        h3 {
+            color: var(--md-sys-color-primary);
+            @include typography-headline-medium;
         }
-        &__left {
-            grid-area: text-left;
-            flex-direction: column;
-            gap: 16px;
-            padding-top: 16px;
 
-            h3 {
-                color: var(--md-sys-color-primary);
-                @include typography-headline-medium;
-            }
-        }
     }
 
 }
