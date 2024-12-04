@@ -304,7 +304,7 @@ section {
     @include typography-display-medium;
     padding: 24px;
     border-radius: 16px;
-    background: var(--md-sys-color-on-primary-container);
+    background: var(--md-sys-color-primary);
     display: grid;
     place-items: center;
 }
@@ -366,7 +366,7 @@ section {
         @include typography-display-medium;
         padding: 24px;
         border-radius: 16px;
-        background: var(--md-sys-color-on-primary-container);
+        background: var(--md-sys-color-primary);
         display: grid;
         place-items: center;
 
