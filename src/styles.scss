@@ -78,22 +78,32 @@ $typography-map: (
 
 :root {
     // light theme colors
-    --md-sys-color-background-light: rgb(248 249 255);
-    --md-sys-color-on-background-light: rgb(25 28 32);
-    --md-sys-color-surface-container-light: rgb(236 238 244);
-    --md-sys-color-primary-container-light: rgb(209 228 255);
-    --md-sys-color-on-primary-container-light: rgb(0 29 54);
-    --md-sys-color-on-surface-light: rgb(25 28 32);
-    --md-sys-color-on-surface-variant-light: rgb(67 71 78);
+    --md-sys-color-background-light: rgba(252, 252, 255, 1);
+    --md-sys-color-on-background-light: rgba(26, 28, 30, 1);
+    --md-sys-color-surface-container-light: rgba(249, 249, 252, 1);
+    --md-sys-color-primary-container-light:rgb(209 228 255);
+    --md-sys-color-on-primary-container-light: rgba(0, 99, 153, 1);
+    --md-sys-color-on-surface-light: rgba(26, 28, 30, 1);
+    --md-sys-color-on-surface-variant-light: rgba(66, 71, 78, 1);
+    --md-sys-color-inverse-surface-light: rgb(46 49 53);
+    --md-sys-color-inverse-on-surface-light: rgb(239 240 247);
+    --md-sys-color-surface-variant-light: rgb(223 226 235);
+    --md-sys-color-secondary-container-light: rgb(215 227 248);
+    --md-sys-color-primary-light: rgb(54 97 142);
 
     // dark theme colors
-    --md-sys-color-background-dark: rgb(17 20 24);
-    --md-sys-color-on-background-dark: rgb(225 226 232);
-    --md-sys-color-surface-container-dark: rgb(29 32 36);
+    --md-sys-color-background-dark: rgba(26, 28, 30, 1);
+    --md-sys-color-on-background-dark: rgba(226, 226, 229, 1);
+    --md-sys-color-surface-container-dark: rgba(17, 20, 22, 1);
     --md-sys-color-primary-container-dark: rgb(26 73 117);
-    --md-sys-color-on-primary-container-dark: rgb(209 228 255);
-    --md-sys-color-on-surface-dark: rgb(225 226 232);
-    --md-sys-color-on-surface-variant-dark: rgb(195 198 207);
+    --md-sys-color-on-primary-container-dark: rgb(0 50 89);
+    --md-sys-color-on-surface-dark: rgba(198, 198, 201, 1);
+    --md-sys-color-on-surface-variant-dark: rgba(194, 199, 207, 1);
+    --md-sys-color-inverse-surface-dark: rgb(225 226 232);
+    --md-sys-color-inverse-on-surface-dark: rgb(46 49 53);
+    --md-sys-color-surface-variant-dark: rgb(67 71 78);
+    --md-sys-color-secondary-container-dark: rgb(59 72 88);
+    --md-sys-color-primary-dark: rgb(161 202 253);
 
     // theme colors
     --md-sys-color-background: light-dark(var(--md-sys-color-background-light), var(--md-sys-color-background-dark));
@@ -103,6 +113,13 @@ $typography-map: (
     --md-sys-color-on-primary-container: light-dark(var(--md-sys-color-on-primary-container-light), var(--md-sys-color-on-primary-container-dark));
     --md-sys-color-on-surface: light-dark(var(--md-sys-color-on-surface-light), var(--md-sys-color-on-surface-dark));
     --md-sys-color-on-surface-variant: light-dark(var(--md-sys-color-on-surface-variant-light), var(--md-sys-color-on-surface-variant-dark));
+    --md-sys-color-inverse-surface:light-dark(var( --md-sys-color-inverse-surface-light), var( --md-sys-color-inverse-surface-dark));
+    --md-sys-color-inverse-on-surface:light-dark(var( --md-sys-color-inverse-on-surface-light), var( --md-sys-color-inverse-on-surface-dark));
+    --md-sys-color-surface-variant: light-dark(var( --md-sys-color-surface-variant-light), var( --md-sys-color-surface-variant-dark));
+    --md-sys-color-secondary-container: light-dark(var( --md-sys-color-secondary-container-light), var( --md-sys-color-secondary-container-dark));
+    --md-sys-color-primary: light-dark(var( --md-sys-color-primary-light), var( --md-sys-color-primary-dark));
+
+
 }
 
 $breakpoint-phone: 600px;
@@ -159,7 +176,7 @@ section {
     background-size: cover;
     background-position: right;
     padding-top: 0;
-    color: white;
+    color: var(--md-sys-color-background-light);
 
 
     &__content {
@@ -223,7 +240,7 @@ section {
     @include typography-display-medium;
     padding: 24px;
     border-radius: 16px;
-    background: #006399;
+    background: var(--md-sys-color-on-primary-container);
     display: grid;
     place-items: center;
 }
@@ -236,32 +253,33 @@ section {
 
 .section__incident {
     &__img {
-        background-color: blue;
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/bb1ea02106377785276820ebdeacea4c781ec8ad');
     }
 }
 
 .section__new {
     &__img {
-        background-color: blue;
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/1aade643a3b12fcd939d4bd6c35e9116e519e18e');
     }
 }
 
 .section__recreated {
     &__img {
-        background-color: blue;
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/d1cb329202792b3173f3cb9c1b096c4877d243dd');
     }
 }
 
-.section__help{
+.section__help {
     &__img {
-        background-color: blue;
+        background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/5265b80c4b87bae3c9f44ff369b80d9ef2ae1e5a');
     }
 }
 
 .section__raport,
 .section__incident,
+.section__help,
 .section__new,
-.section__recreated{
+.section__recreated {
     &__img {
         height: 256px;
         max-width: 456px;
@@ -275,7 +293,12 @@ section {
         grid-auto-rows: min-content;
         gap: 16px;
 
+        p {
+            color: var(--md-sys-color-on-background);
+        }
+
         h3 {
+            color: var( --md-sys-color-primary);
             @include typography-headline-medium;
         }
     }
@@ -291,8 +314,8 @@ section {
 }
 
 .slogan {
-    background-color: aqua;
-    display: grid;
+    background-color:var( --md-sys-color-inverse-surface);
+    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -300,18 +323,28 @@ section {
     p {
         grid-column: 1/-1;
         @include typography-display-medium;
-        color: var(--md-sys-color-on-background-reverse)
+        color: var(--md-sys-color-inverse-on-surface)
+    }
+
+    &__cta {
+        @include typography-display-medium;
+        padding: 24px;
+        border-radius: 16px;
+        background: #006399;
+        display: grid;
+        place-items: center;
     }
 }
 
 .text-section {
 
-    background-color: aqua;
+    background-color: var( --md-sys-color-surface-variant);
     text-align: center;
 
     p {
         display: grid;
         grid-column: 2/ span 4;
+        color: var(--md-sys-color-on-surface-variant);
 
 
         @include window-classes.on-medium {
@@ -326,15 +359,15 @@ section {
 }
 
 .section__list {
+    background-color: var(--md-sys-color-secondary-container);
     display: grid;
     grid-template-columns: subgrid;
-    grid-template-rows: repeat(6, 1fr);
     align-items: center;
     gap: 16px;
     grid-auto-rows: auto;
 
     &__img {
-        background-color: blue;
+        background-image:url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/5265b80c4b87bae3c9f44ff369b80d9ef2ae1e5a');
         height: 256px;
         max-width: 456px;
         grid-column: span 4;
@@ -346,12 +379,14 @@ section {
         grid-column: span 4;
         grid-row: 2/6;
 
-        &__right, &__left {
+        &__right,
+        &__left {
             display: grid;
             gap: 16px;
             padding-top: 16px;
 
             h3 {
+                color: var(--md-sys-color-primary-container);
                 @include typography-headline-medium;
             }
         }
@@ -359,22 +394,56 @@ section {
 
 }
 
-.section__help{
-    &__img {
-        height: 256px;
-        max-width: 456px;
-        grid-column: span 5;
-        border-radius: 16px;
+.section__agitation {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column: 1/-1;
+    text-align: center;
+    background-color: var(--md-sys-color-primary-container);
+    text-align: center;
+    align-items: center;
+    gap: 16px;
+
+    &__small {
+        grid-column: 1/-1;
+        grid-row: 1;
     }
 
-    &__content {
-        grid-column: span 4;
-        display: grid;
-        grid-auto-rows: min-content;
-        gap: 16px;
+    &__medium {
+        grid-column: 1/-1;
+        grid-row: 2;
+    }
 
-        h3 {
-            @include typography-headline-medium;
+    &__large {
+        grid-column: 1/-1;
+        grid-row: 3;
+    }
+}
+
+.section__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section__footer {
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    background-color: var(--md-sys-color-inverse-surface);
+    align-content: center;
+
+    p {
+        color: var(--md-sys-color-inverse-on-surface);
+        grid-column: 4/ span 2;
+
+        @include window-classes.on-medium {
+            grid-column: 7/ span 3;
+        }
+
+        @include window-classes.on-classes(("expanded", "large", "extra-large")) {
+            grid-column: 10/ span 3;
+
         }
     }
 }
