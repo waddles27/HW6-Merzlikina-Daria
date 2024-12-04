@@ -398,6 +398,10 @@ section {
     align-items: center;
     gap: 16px;
     grid-auto-rows: auto;
+    @include on-classes(("expanded", "large", "extra-large")) {
+        grid-template-columns: repeat(2, 6fr); 
+        grid-template-rows: repeat(3, auto); 
+      }
 
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/8b60af22f02d84ebb8b268ddabe0443886678db9');
