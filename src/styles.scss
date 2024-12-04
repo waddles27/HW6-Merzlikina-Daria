@@ -100,6 +100,42 @@ $typography-map: (
     @include _private-apply-font("body-medium");
 }
 
+@mixin section-styles {
+    &__img {
+        background-position: center;
+        background-size: cover;
+        height: 256px;
+        max-width: 456px;
+        grid-column: span 5;
+        border-radius: 16px;
+    }
+
+    &__content {
+        grid-column: span 4;
+        display: grid;
+        grid-auto-rows: min-content;
+        gap: 16px;
+
+        p {
+            color: var(--md-sys-color-on-background);
+        }
+
+        h3 {
+            color: var(--md-sys-color-primary);
+            @include typography-headline-medium;
+        }
+    }
+
+    @include window-classes.on-classes(("medium", "expanded", "large", "extra-large")) {
+
+        &__img,
+        &__content {
+            grid-column: span 6;
+            background-size: cover;
+        }
+    }
+}
+
 :root {
     // light theme colors
     --md-sys-color-background-light: rgba(252, 252, 255, 1);
@@ -274,73 +310,40 @@ section {
 }
 
 .section__raport {
+    @include section-styles;
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/64af9ae666d8a601f727fc4ad3e565f793de4b8d');
     }
 }
 
 .section__incident {
+    @include section-styles;
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/bb1ea02106377785276820ebdeacea4c781ec8ad');
     }
 }
 
 .section__new {
+    @include section-styles;
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/1aade643a3b12fcd939d4bd6c35e9116e519e18e');
     }
 }
 
 .section__recreated {
+    @include section-styles;
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/d1cb329202792b3173f3cb9c1b096c4877d243dd');
     }
 }
 
 .section__help {
+    @include section-styles;
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/5265b80c4b87bae3c9f44ff369b80d9ef2ae1e5a');
     }
 }
 
-.section__raport,
-.section__incident,
-.section__help,
-.section__new,
-.section__recreated {
-    &__img {
-        background-position: center;
-        height: 256px;
-        max-width: 456px;
-        grid-column: span 5;
-        border-radius: 16px;
-    }
-
-    &__content {
-        grid-column: span 4;
-        display: grid;
-        grid-auto-rows: min-content;
-        gap: 16px;
-
-        p {
-            color: var(--md-sys-color-on-background);
-        }
-
-        h3 {
-            color: var(--md-sys-color-primary);
-            @include typography-headline-medium;
-        }
-    }
-
-    @include window-classes.on-classes(("medium", "expanded", "large", "extra-large")) {
-
-        &__img,
-        &__content {
-            grid-column: span 6;
-            background-size: cover;
-        }
-    }
-}
 
 .slogan {
     background-color: var(--md-sys-color-inverse-surface);
@@ -398,9 +401,14 @@ section {
     align-items: center;
     gap: 16px;
     grid-auto-rows: auto;
-    @include on-classes(("expanded", "large", "extra-large")) {
+
+    @include window-classes.on-classes(("expanded", "large", "extra-large")) {
         grid-template-columns: repeat(2, 6fr); 
         grid-template-rows: repeat(3, auto); 
+
+       &__text{
+        display:flex ;
+       }
       }
 
     &__img {
@@ -417,9 +425,19 @@ section {
         grid-column: span 4;
         grid-row: 2/6;
 
-        &__right,
+        &__right{
+            grid-area: text-right;
+            gap: 16px;
+            padding-top: 16px;
+
+            h3 {
+                color: var(--md-sys-color-primary);
+                @include typography-headline-medium;
+            }
+        }
         &__left {
-            display: grid;
+            grid-area: text-left;
+            flex-direction: column;
             gap: 16px;
             padding-top: 16px;
 
