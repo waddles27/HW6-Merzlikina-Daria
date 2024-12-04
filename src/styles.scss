@@ -378,7 +378,7 @@ section {
 .text-section {
 
     background-color: var(--md-sys-color-surface-variant);
-    text-align: center;
+    
 
     p {
         display: grid;
@@ -391,7 +391,7 @@ section {
         }
 
         @include window-classes.on-classes(("expanded", "large", "extra-large")) {
-            grid-column: 8/ 12;
+            grid-column: 7/span 5;
             justify-content: end;
         }
     }
