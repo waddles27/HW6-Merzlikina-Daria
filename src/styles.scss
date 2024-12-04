@@ -402,7 +402,7 @@ section {
     background-color: var(--md-sys-color-secondary-container);
     padding-block: 100px;
     grid-column: 1 / -1;
-
+    grid-auto-rows: 1fr;
 
     &__img {
         background-image: url('https://www.figma.com/file/XTYPVf1ClNIOXykE7zk4Wh/image/8b60af22f02d84ebb8b268ddabe0443886678db9');
@@ -413,11 +413,7 @@ section {
         border-radius: 16px;
 
         @include window-classes.on-classes(("expanded", "large", "extra-large")) {
-            grid-column: 1/span 6;
-        }
-
-        @include window-classes.on-medium {
-            grid-column: span 8;
+            grid-column: span 6;
         }
 
     }
@@ -426,23 +422,14 @@ section {
         display: grid;
         grid-column: span 4;
         gap: 16px;
-        padding-top: 16px;
-
-        @include window-classes.on-medium {
-            grid-column: span 8;
-        }
-
-        @include window-classes.on-classes(("expanded", "large", "extra-large")) {
-            grid-column: 7/span 6;
-
-        }
-
+        grid-auto-rows: min-content;
+        grid-auto-rows: unset;
+        grid-template-columns: unset;
 
         h3 {
             color: var(--md-sys-color-primary);
             @include typography-headline-medium;
         }
-
     }
 
 }
@@ -457,7 +444,7 @@ section {
     align-items: center;
     gap: 16px;
     color: var(--md-sys-color-on-primary-container);
-    
+
 
     &__small {
         @include typography-agitation-small;
